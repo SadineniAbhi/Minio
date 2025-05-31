@@ -15,6 +15,6 @@ This project demonstrates a local setup of [MinIO](https://min.io/) for S3-compa
 
 ```bash
 docker-compose up -d
-
+```
 
 ![image](https://github.com/user-attachments/assets/ebb8b797-59f9-487c-b05d-dc4772f7ad38)
