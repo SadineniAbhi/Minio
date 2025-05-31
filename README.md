@@ -1,5 +1,4 @@
-# 🪣 MinIO Local Setup with Avro Integration
-
+# 🪣 MinIO Local Setup 
 This project demonstrates a local setup of [MinIO](https://min.io/) for S3-compatible object storage using Docker Compose. It includes Python scripts to read and write data in Avro format.
 
 ## ✅ What I Did
