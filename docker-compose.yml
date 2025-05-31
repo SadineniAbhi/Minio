@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  minio:
+    image: quay.io/minio/minio
+    container_name: minio
+    ports:
+      - "9000:9000"  # S3 API
+      - "9001:9001"  # Console UI
+    environment:
+      MINIO_ROOT_USER: ROOTUSER
+      MINIO_ROOT_PASSWORD: CHANGEME123
+    command: server /data --console-address ":9001"
+    volumes:
+      - ./minio-data:/data
+
+  hive-metastore:
+    image: naushadh/hive-metastore
+    container_name: hive-metastore
+    ports:
+      - "9083:9083"
+    environment:
+      - DB_TYPE=derby
+    depends_on:
+      - minio
+
+  trino:
+    image: trinodb/trino:latest
+    container_name: trino
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./trino/catalog:/etc/trino/catalog
+    depends_on:
+      - hive-metastore
+      - minio
